@@ -1,15 +1,17 @@
 import requests
 
-url = "https://devapi.globelabs.com.ph/smsmessaging/v1/outbound/<shortcode>/requests"
+v_shortcode = '2648'
+v_access_token = 'A-2szoYus7mB13l5axDrr_1234AApSz8eu236GRNsoBQ'
+v_address = '9771234567'
+v_clientCorrelator = '268401'
+v_message = 'Python SMS Test'
 
-querystring = {"access_token":"<access_token>"}
+url = "https://devapi.globelabs.com.ph/smsmessaging/v1/outbound/"+v_shortcode+"/requests"
 
-payload = "{\"outboundSMSMessageRequest\": {\r\n   \"clientCorrelator\": \"<clientCorrelator>\",\r\n   \"senderAddress\": \"<shortcode>\",\r\n   \"outboundSMSTextMessage\": {\"message\": \"Hello World\"},\r\n   \"address\": \"<address>\"\r\n }\r\n}"
-headers = {
-    'Content-Type': "application/json",
-    'Accept': "*/*",
-    'Host': "devapi.globelabs.com.ph"
-    }
+querystring = {"access_token":v_access_token}
+
+payload = "{\"outboundSMSMessageRequest\": { \"clientCorrelator\": \""+v_clientCorrelator+"\", \"senderAddress\": \""+v_shortcode+"\", \"outboundSMSTextMessage\": {\"message\": \""+v_message+"\"}, \"address\": \""+v_address+"\" } }"
+headers = { 'Content-Type': "application/json", 'Host': "devapi.globelabs.com.ph" }
 
 response = requests.request("POST", url, data=payload, headers=headers, params=querystring)
 
